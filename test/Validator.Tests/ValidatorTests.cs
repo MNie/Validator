@@ -27,36 +27,24 @@ namespace Validator.Tests
     public class ValidatorTests
     {
         [Fact]
-        public void Test1()
+        public void WhenNameAndBreedPassThePrediction_ErrorArrayShouldBeEmpty()
         {
-            var dogsName = "bob";
-            var dogsBreed = "random";
+            const string DogsName = "bob";
+            const string DogsBreed = "random";
 
-            var validator = new DogValidator(dogsName, dogsBreed);
+            var validator = new DogValidator(DogsName, DogsBreed);
             var errors = validator.Validate();
 
             Assert.Empty(errors);
         }
 
         [Fact]
-        public void Test2()
+        public void WhenNameNotPassThePrediction_ErrorArrayContainInfoAboutIt()
         {
-            var dogsName = "bob";
-            var dogsBreed = "husky";
+            const string DogsName = "";
+            const string DogsBreed = "husky";
 
-            var validator = new DogValidator(dogsName, dogsBreed);
-            var errors = validator.Validate();
-
-            Assert.Empty(errors);
-        }
-
-        [Fact]
-        public void Test3()
-        {
-            var dogsName = "";
-            var dogsBreed = "husky";
-
-            var validator = new DogValidator(dogsName, dogsBreed);
+            var validator = new DogValidator(DogsName, DogsBreed);
             var errors = validator.Validate();
 
             Assert.Contains("dogs name cannot be null", errors);
